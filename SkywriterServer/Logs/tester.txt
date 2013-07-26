@@ -1,0 +1,6 @@
+InsertClipUser: webservice
+InsertClipUser: service
+INSERT INTO ClipUser (externalId, name, email, password) VALUES ('Gareth', 'gareth.marland@gmail.com', 'tun45t34k!');
+WriteToDatabase: C:\SQLiteDatabases\RemoteClipboard.db3
+SQL logic error or missing database
+3 values for 4 columns
