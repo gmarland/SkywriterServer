@@ -8,8 +8,8 @@ using System.Web;
 
 namespace SkywriterServer.Hubs
 {
-    [HubName("Clipboard")]
-    public class Clipboard : Hub
+    [HubName("SkywriterBoard")]
+    public class SkywriterBoard : Hub
     {
         private static Dictionary<String, List<String>> userConnections = new Dictionary<String, List<String>>();
 
@@ -27,7 +27,7 @@ namespace SkywriterServer.Hubs
             return base.OnConnected();
         }
 
-        public void CopyClipboardItem(String userId, String text)
+        public void CopySkywriterItem(String userId, String text)
         {
             if (userConnections.ContainsKey(userId))
             {
@@ -35,7 +35,7 @@ namespace SkywriterServer.Hubs
                 {
                     if (userConnections[userId][i] != Context.ConnectionId)
                     {
-                        Clients.Client(userConnections[userId][i]).CopiedClipboardItem(text);
+                        Clients.Client(userConnections[userId][i]).CopiedSkywriterItem(text);
                     }
                 }
             }
