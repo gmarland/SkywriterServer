@@ -27,6 +27,20 @@ namespace SkywriterServer.Hubs
             return base.OnConnected();
         }
 
+        public void ClearSkywriterBoard(String userId)
+        {
+            if (userConnections.ContainsKey(userId))
+            {
+                for (int i = 0; i < userConnections[userId].Count; i++)
+                {
+                    if (userConnections[userId][i] != Context.ConnectionId)
+                    {
+                        Clients.Client(userConnections[userId][i]).ClearSkywriterBoard();
+                    }
+                }
+            }
+        }
+
         public void CopySkywriterItem(String userId, String text)
         {
             if (userConnections.ContainsKey(userId))
