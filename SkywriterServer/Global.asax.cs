@@ -22,7 +22,7 @@ namespace SkywriterServer
             HubConfiguration hubConfiguration = new HubConfiguration();
             hubConfiguration.EnableCrossDomain = true;
             hubConfiguration.EnableDetailedErrors = true;
-            hubConfiguration.EnableJavaScriptProxies = true;
+            hubConfiguration.EnableJavaScriptProxies = false;
 
             RouteTable.Routes.MapHubs(hubConfiguration);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
