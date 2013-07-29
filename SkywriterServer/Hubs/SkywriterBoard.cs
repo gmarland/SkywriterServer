@@ -38,6 +38,16 @@ namespace SkywriterServer.Hubs
                         Clients.Client(userConnections[userId][i]).ClearSkywriterBoard();
                     }
                 }
+
+                if (userConnections[userId].Where(c => c == Context.ConnectionId).Count() == 0)
+                {
+                    userConnections[userId].Add(Context.ConnectionId);
+                }
+            }
+            else
+            {
+                userConnections[userId] = new List<String>();
+                userConnections[userId].Add(Context.ConnectionId);
             }
         }
 
@@ -52,6 +62,16 @@ namespace SkywriterServer.Hubs
                         Clients.Client(userConnections[userId][i]).CopiedSkywriterItem(text);
                     }
                 }
+
+                if (userConnections[userId].Where(c => c == Context.ConnectionId).Count() == 0)
+                {
+                    userConnections[userId].Add(Context.ConnectionId);
+                }
+            }
+            else
+            {
+                userConnections[userId] = new List<String>();
+                userConnections[userId].Add(Context.ConnectionId);
             }
         }
 
