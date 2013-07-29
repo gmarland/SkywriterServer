@@ -19,6 +19,8 @@ namespace SkywriterServer
         {
             AreaRegistration.RegisterAllAreas();
 
+            GlobalHost.Configuration.KeepAlive = null;
+
             HubConfiguration hubConfiguration = new HubConfiguration();
             hubConfiguration.EnableCrossDomain = true;
             hubConfiguration.EnableDetailedErrors = true;
