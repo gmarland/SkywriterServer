@@ -27,6 +27,19 @@ namespace SkywriterServer.Hubs
             return base.OnConnected();
         }
 
+        public void ReconnectClient(String userId)
+        {
+            if (!userConnections.ContainsKey(userId))
+            {
+                userConnections[userId] = new List<String>();
+            }
+
+            if (userConnections[userId].Where(c => c == Context.ConnectionId).Count() == 0)
+            {
+                userConnections[userId].Add(Context.ConnectionId);
+            }
+        }
+
         public void ClearSkywriterBoard(String userId)
         {
             if (userConnections.ContainsKey(userId))
@@ -38,16 +51,6 @@ namespace SkywriterServer.Hubs
                         Clients.Client(userConnections[userId][i]).ClearSkywriterBoard();
                     }
                 }
-
-                if (userConnections[userId].Where(c => c == Context.ConnectionId).Count() == 0)
-                {
-                    userConnections[userId].Add(Context.ConnectionId);
-                }
-            }
-            else
-            {
-                userConnections[userId] = new List<String>();
-                userConnections[userId].Add(Context.ConnectionId);
             }
         }
 
@@ -62,16 +65,6 @@ namespace SkywriterServer.Hubs
                         Clients.Client(userConnections[userId][i]).CopiedSkywriterItem(text);
                     }
                 }
-
-                if (userConnections[userId].Where(c => c == Context.ConnectionId).Count() == 0)
-                {
-                    userConnections[userId].Add(Context.ConnectionId);
-                }
-            }
-            else
-            {
-                userConnections[userId] = new List<String>();
-                userConnections[userId].Add(Context.ConnectionId);
             }
         }
 
